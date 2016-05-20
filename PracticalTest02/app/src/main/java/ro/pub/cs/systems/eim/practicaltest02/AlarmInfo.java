@@ -12,15 +12,15 @@ public class AlarmInfo {
     public AlarmInfo(int hour, int minutes) {
         this.hour = hour;
         this.minutes = minutes;
-        this.isActive = true;
+        this.isActive = false;
     }
 
     public boolean isAlarmActive() {
         return this.isActive;
     }
 
-    public void setInactive() {
-        this.isActive = false;
+    public void setActive() {
+        this.isActive = true;
     }
 
     public int getHour() {

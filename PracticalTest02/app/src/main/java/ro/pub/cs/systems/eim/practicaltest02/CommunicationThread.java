@@ -61,7 +61,7 @@ public class CommunicationThread extends Thread {
 
                             serverThread.setData(ipAddress, new AlarmInfo(hour, minutes));
 
-                            printWriter.println("Alarm activated");
+                            printWriter.println("Alarm set");
                             printWriter.flush();
                         }
                         else if (action.equals(Constants.RESET)) {
@@ -78,8 +78,8 @@ public class CommunicationThread extends Thread {
                             }
                             else {
                                 AlarmInfo alarm = data.get(ipAddress);
-                                if (!alarm.isAlarmActive()) {
-                                    printWriter.println("Alarm inactive");
+                                if (alarm.isAlarmActive()) {
+                                    printWriter.println("Alarm active");
                                     printWriter.flush();
                                 } else {
 
@@ -99,15 +99,15 @@ public class CommunicationThread extends Thread {
                                         int minutes = Integer.parseInt(new2Tokens[1]);
 
                                         if (hour > alarm.getHour()) {
-                                            alarm.setInactive();
-                                            printWriter.println("Alarm inactive from now");
+                                            alarm.setActive();
+                                            printWriter.println("Alarm active from now");
                                             printWriter.flush();
                                         } else if (hour == alarm.getHour() && minutes > alarm.getMinutes()) {
-                                            alarm.setInactive();
-                                            printWriter.println("Alarm inactive from now");
+                                            alarm.setActive();
+                                            printWriter.println("Alarm active from now");
                                             printWriter.flush();
                                         } else {
-                                            printWriter.println("Alarm still active");
+                                            printWriter.println("Alarm still inactive");
                                             printWriter.flush();
                                         }
                                     }
